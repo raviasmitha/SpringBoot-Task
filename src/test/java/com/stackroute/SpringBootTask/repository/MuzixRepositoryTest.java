@@ -39,7 +39,7 @@ public class MuzixRepositoryTest {
   }
 
   @Test
-  public void testSaveUserFailure(){
+  public void testSaveTrackFailure(){
     Muzix track1 = new Muzix(11, "Name",5, "Comments");
     repository.save(track);
     Muzix fetchTrack = repository.findById(track.getId()).get();
@@ -47,7 +47,7 @@ public class MuzixRepositoryTest {
   }
 
   @Test
-  public void testGetAllUser(){
+  public void testGetAllTracks(){
     Muzix track1 = new Muzix(1, "Name",5, "Comments");
 
     Muzix track2 = new Muzix(2, "Name2",5, "Comments2");
