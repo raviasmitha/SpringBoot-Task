@@ -92,15 +92,3 @@ public class MuzixServiceTest {
     List<Muzix> track = muzixService.getBYName("ashu");
     Assert.assertEquals(list,track);
   }
-/*
-
-  @Test
-  public void deleteTrack() throws TrackNotFoundException {
-
-    muzixRepository.save(muzix);
-    //stubbing the mock to return specific data
-    when(muzixRepository.deleteById(1)).thenReturn(void);
-    Muzix track = muzixService.deleteById(1);
-    Assert.assertEquals(muzix,track);
-  }*/
-}
