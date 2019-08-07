@@ -13,7 +13,7 @@ import java.util.Optional;
 @Service
 public class MuzixServiceImpl implements MuzixService {
 
-    MuzixRepository muzixRepository;
+    private MuzixRepository muzixRepository;
 
     @Autowired
     public MuzixServiceImpl(MuzixRepository muzixRepository){
@@ -21,7 +21,7 @@ public class MuzixServiceImpl implements MuzixService {
     }
 
     @Override
-    public Muzix saveMusix(Muzix muzix) throws TrackAlreadyExistsException {
+    public Muzix saveTrack(Muzix muzix) throws TrackAlreadyExistsException {
 
         if (muzixRepository.existsById(muzix.getId())) {
 
@@ -34,13 +34,13 @@ public class MuzixServiceImpl implements MuzixService {
     }
 
     @Override
-    public List<Muzix> getMusix() {
+    public List<Muzix> getAllTracks() {
 
         return (List<Muzix>) muzixRepository.findAll();
     }
 
     @Override
-    public Muzix getById(int id) throws TrackNotFoundException {
+    public Muzix getTrackById(int id) throws TrackNotFoundException {
         Optional<Muzix> user_id = muzixRepository.findById(id);
 
         if (!user_id.isPresent())
@@ -55,31 +55,30 @@ public class MuzixServiceImpl implements MuzixService {
     }
 
     @Override
-    public void deleteById(int id) {
+    public Muzix deleteTrackById(int id) throws TrackNotFoundException {
         muzixRepository.deleteById(id);
+        MuzixService muzixService= null;
+        return  muzixService.getById(id);
+
 
     }
-
+    
     @Override
-    public boolean updateById(Muzix musix, int id) {
+    public Muzix updateTrackById(Muzix musix, int id) {
 
         Optional<Muzix> userOptional = muzixRepository.findById(id);
 
         if (!userOptional.isPresent())
-            return false;
-
-
         musix.setId(id);
-
         muzixRepository.save(musix);
-        return true;
+        MuzixService muzixService=null;
+        return muzixService.getTrackById(id);
 
     }
 
-    public List<Muzix> getBYName(String name) {
+    public List<Muzix> getTrackBYName(String name) {
         List<Muzix> user_id = muzixRepository.findTitleByName(name);
 
         return user_id;
     }
-
 }
