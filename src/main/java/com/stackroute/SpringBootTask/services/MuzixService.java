@@ -9,17 +9,17 @@ import java.util.List;
 
 public interface MuzixService {
 
-    public Muzix saveMusix(Muzix musix) throws TrackAlreadyExistsException;
+    public Muzix saveTrack(Muzix musix) throws TrackAlreadyExistsException;
 
-    public List<Muzix> getMusix();
+    public List<Muzix> getAllTracks();
 
-    public Muzix getById(int id) throws TrackNotFoundException;
+    public Muzix getTrackById(int id) throws TrackNotFoundException;
 
-    public void deleteById(int id);
+    public Muzix deleteTrackById(int id);
 
-    public boolean updateById(Muzix musix, int id);
+    public Muzix updatetrackById(Muzix musix, int id);
 
-    public List<Muzix> getBYName(String name);
+    public List<Muzix> getTrackBYName(String name);
 
 
 }
