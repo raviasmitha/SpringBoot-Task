@@ -13,13 +13,13 @@ public interface MuzixService {
 
     public Muzix getTrackById(int id) throws TrackNotFoundException;
 
-    public List<Muzix> getAllTracks();
+    public List<Muzix> getAllTracks() throws TrackNotFoundException;
 
-    public Muzix deleteTrackById(int id);
+    public Muzix deleteTrackById(int id) throws TrackNotFoundException;
 
-    public Muzix updateTrackById(Muzix musix, int id);
+    public Muzix updateTrackById(Muzix musix, int id) throws TrackNotFoundException;
 
-    public List<Muzix> getTrackBYName(String name);
+    public List<Muzix> getTrackBYName(String name) throws TrackNotFoundException;
 
 
 }
