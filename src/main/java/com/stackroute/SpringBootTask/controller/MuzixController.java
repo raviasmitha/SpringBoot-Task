@@ -81,14 +81,11 @@ public class MuzixController {
     This method will update data by id
      */
 
-    @PutMapping("/track/{id}")
-    public ResponseEntity<Muzix> updateTrackById(@RequestBody Muzix muzix, @PathVariable int id) {
-
-        if (muzixService.updateTrackById(muzix, id)) {
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.noContent().build();
+    @DeleteMapping("/track/{id}")
+    public ResponseEntity<Muzix> deleteTrackById(@PathVariable int id) {
+        muzixService.deleteTrackById(id);
+        Muzix muzix = muzixService.getTrackById(id);
+        return new ResponseEntity<Muzix>(muzix,HttpStatus.OK);
     }
 
     @GetMapping("/track/{name}")
