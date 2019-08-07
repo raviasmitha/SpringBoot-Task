@@ -56,15 +56,15 @@ public class MuzixServiceImpl implements MuzixService {
 
     @Override
     public Muzix deleteTrackById(int id) throws TrackNotFoundException {
-        muzixRepository.deleteById(id);
         MuzixService muzixService= null;
-        return  muzixService.getById(id);
-
+        Muzix muzix = muzixService.getById(id);
+        muzixRepository.deleteById(id);
+        return muzix;
 
     }
     
     @Override
-    public Muzix updateTrackById(Muzix musix, int id) {
+    public Muzix updateTrackById(Muzix musix, int id)throws TrackNotFoundException {
 
         Optional<Muzix> userOptional = muzixRepository.findById(id);
 
@@ -76,7 +76,7 @@ public class MuzixServiceImpl implements MuzixService {
 
     }
 
-    public List<Muzix> getTrackBYName(String name) {
+    public List<Muzix> getTrackBYName(String name) throws TrackNotFoundException{
         List<Muzix> user_id = muzixRepository.findTitleByName(name);
 
         return user_id;
