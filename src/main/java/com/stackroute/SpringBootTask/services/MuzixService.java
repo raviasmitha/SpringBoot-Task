@@ -7,17 +7,17 @@ import java.util.List;
 
 public interface MuzixService {
 
-    public Muzix saveMusix(Muzix musix);
+   public Muzix saveTrack(Muzix musix);
 
-    public List<Muzix> getMusix();
+    public List<Muzix> getAllTracks();
 
-    public Muzix getById(int id) ;
+    public Muzix getTrackById(int id) ;
 
-    public void deleteById(int id);
+    public Muzix deleteTrackById(int id);
 
-    public boolean updateById(Muzix musix, int id);
+    public Muzix updateTrackById(Muzix musix, int id);
 
-    public List<Muzix> getBYName(String name);
+    public List<Muzix> getTrackBYName(String name);
 
 
 }
