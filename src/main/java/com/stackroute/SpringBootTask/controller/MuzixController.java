@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("api/v1")
 public class MuzixController {
 
-    MuzixService muzixService;
+    private MuzixService muzixService;
 
     @Autowired
     public MuzixController(MuzixService muzixService){
@@ -57,9 +57,10 @@ public class MuzixController {
      */
 
     @DeleteMapping("/track/{id}")
-    public String deleteTrackById(@PathVariable int id) {
-        muzixService.deleteById(id);
-        return "Data deleted";
+    public ResponseEntity<Muzix> deleteTrackById(@PathVariable int id) {
+        muzixService.deleteTrackById(id);
+        Muzix muzix = muzixService.getTrackById(id);
+        return new ResponseEntity<Muzix>(muzix,HttpStatus.OK);
     }
 
     /*
@@ -69,13 +70,11 @@ public class MuzixController {
     @PutMapping("/track/{id}")
     public ResponseEntity<Muzix> updateTrackById(@RequestBody Muzix muzix, @PathVariable int id) {
 
-        if (muzixService.updateTrackById(muzix, id)) {
-            return ResponseEntity.notFound().build();
-        }
+        muzixService.updateTrackById(muzix, id);
+        Muzix muzix1 = muzixService.getTrackById(id);
+        return new ResponseEntity<Muzix>(muzix, HttpStatus.OK);
 
-        return ResponseEntity.noContent().build();
+
     }
-
-
 }
 

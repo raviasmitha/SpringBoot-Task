@@ -19,43 +19,42 @@ public class MuzixServiceImpl implements MuzixService {
     }
 
     @Override
-    public Muzix saveMusix(Muzix muzix) {
+    public Muzix saveTrack(Muzix muzix) {
         Muzix savedMuzix = muzixRepository.save(muzix);
         return savedMuzix;
     }
 
     @Override
-    public List<Muzix> getMusix() {
+    public List<Muzix> getAllTracks() {
 
         return (List<Muzix>) muzixRepository.findAll();
     }
 
     @Override
-    public Muzix getById(int id) {
+    public Muzix getTrackById(int id) {
         Optional<Muzix> user_id = muzixRepository.findById(id);
 
         return user_id.get();
     }
 
     @Override
-    public void deleteById(int id) {
+    public Muzix deleteTrackById(int id) {
         muzixRepository.deleteById(id);
+        MuzixService muzixService=null;
+        return muzixService.getTrackById(id);
 
     }
 
     @Override
-    public boolean updateById(Muzix musix, int id) {
+    public Muzix updateTrackById(Muzix musix, int id) {
 
         Optional<Muzix> userOptional = muzixRepository.findById(id);
 
         if (!userOptional.isPresent())
-            return false;
-
-
         musix.setId(id);
-
         muzixRepository.save(musix);
-        return true;
+        MuzixService muzixService=null;
+        return muzixService.getTrackById(id);
 
     }
 
