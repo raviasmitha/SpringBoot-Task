@@ -83,18 +83,15 @@ public class MuzixServiceImpl implements MuzixService , ApplicationListener<Cont
     }
 
     @Override
-    public boolean updateTrackById(Muzix musix, int id) {
+    public Muzix updateTrackById(Muzix musix, int id) {
 
         Optional<Muzix> userOptional = muzixRepository.findById(id);
 
         if (!userOptional.isPresent())
-            return false;
-
-
         musix.setId(id);
-
         muzixRepository.save(musix);
-        return true;
+        MuzixService muzixService=null;
+        return muzixService.getTrackById(id);
 
     }
 
