@@ -17,7 +17,7 @@ public interface MuzixService {
 
     public Muzix deleteTrackById(int id) throws TrackNotFoundException;
 
-    public boolean updateTrackById(Muzix musix, int id);
+    public Muzix updateTrackById(Muzix musix, int id);
 
     public List<Muzix> getTrackBYName(String name);
 
