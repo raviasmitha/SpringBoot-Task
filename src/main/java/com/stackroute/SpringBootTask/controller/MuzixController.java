@@ -23,7 +23,7 @@ public class MuzixController {
     }
 
 
-    @PostMapping("/muzix")
+    @PostMapping("/track")
 
     public ResponseEntity<?> saveTrack(@RequestBody Muzix muzix) throws TrackAlreadyExistsException {
         Muzix savedMuzix = null;
@@ -40,7 +40,7 @@ public class MuzixController {
 
     /* This method will retrive musix by using Query parameter */
 
-    @GetMapping("/muzix")
+    @GetMapping("/tracks")
 
     public ResponseEntity<List<Muzix>> getAllTracks() {
 
@@ -50,7 +50,7 @@ public class MuzixController {
 
     }
 
-    @GetMapping("/muzix/{id}")
+    @GetMapping("/track/{id}")
 
     public ResponseEntity<?> getTrackById(@PathVariable int id) throws TrackNotFoundException {
         Muzix muzix = null;
@@ -69,7 +69,7 @@ public class MuzixController {
      This method will delete data by id
      */
 
-    @DeleteMapping("/muzix/{id}")
+    @DeleteMapping("/track/{id}")
     public ResponseEntity<?> deleteTrackById(@PathVariable int id) throws TrackNotFoundException {
       Muzix muzix;
       muzix = muzixService.getTrackById(id);
@@ -81,7 +81,7 @@ public class MuzixController {
     This method will update data by id
      */
 
-    @PutMapping("/muzix/{id}")
+    @PutMapping("/track/{id}")
     public ResponseEntity<Muzix> updateTrackById(@RequestBody Muzix muzix, @PathVariable int id) {
 
         if (muzixService.updateTrackById(muzix, id)) {
@@ -91,11 +91,13 @@ public class MuzixController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/name/{name}")
+    @GetMapping("/track/{name}")
     public ResponseEntity<List<Muzix>> getTrackByname(@PathVariable String name) {
         List<Muzix> musix = muzixService.getTrackBYName(name);
         return new ResponseEntity<List<Muzix>>(musix, HttpStatus.CREATED);
     }
+
+}
 
 }
 
