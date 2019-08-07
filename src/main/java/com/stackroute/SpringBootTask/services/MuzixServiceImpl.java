@@ -32,7 +32,7 @@ public class MuzixServiceImpl implements MuzixService , ApplicationListener<Cont
     @Value("${muzix.2.comment:default}")
     String comments2;
 
-    MuzixRepository muzixRepository;
+    private MuzixRepository muzixRepository;
 
     @Autowired
     public MuzixServiceImpl(MuzixRepository muzixRepository){
